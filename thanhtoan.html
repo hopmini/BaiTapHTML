@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="thanhtoan.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiểm Tra Giữa Kì I</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <h1>Mini Store</h1>
+          <p>Chuỗi cửa hàng hàng đầu Việt Nam</p>
+        </div>
+        <div class="hotline">
+          <p>0123.456.789</p>
+          <p>0987.654.321</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Thời trang nam</a></li>
+          <li><a href="ttrangnu.html">Thời trang nữ</a></li>
+          <li><a href="phukien.html">Phụ kiện</a></li>
+          <li><a href="thanhtoan.html">Thanh toán</a></li>
+        <div class="search">
+          <input type="search" placeholder="Tìm kiếm.." />
+          <button>Tìm kiếm</button>
+        </div>
+        <ul>
+          <li><a href="login.html">Đăng Nhập</a></li>
+          <li><a href="register.html">Đăng Ký</a></li>
+        </ul>
+      </nav>
+      <div class="slide">
+        <a href=""
+          ><img
+            src="https://cf.shopee.vn/file/vn-50009109-328004d597401de225d7e65e0c4fa58c"
+            alt=""
+        /></a>
+      </div>
+      <h1>Thông Tin Thanh Toán</h1>
+      <div class="thanhtoan">
+        <div class="thongtin">
+          <div class="name">
+            <p>Nhập tên của bạn:</p>
+            <input
+              type="text"
+              class="diachi"
+              placeholder="Nhập tên của bạn: "
+            />
+          </div>
+          <div class="phone">
+            <p>Nhập số điện thoại của bạn:</p>
+            <input
+              type="tel"
+              class="diachi"
+              placeholder="Nhập số điện thoại: "
+            />
+          </div>
+          <div class="city">
+            <p>Tỉnh:</p>
+            <select class="diachi" id="city" aria-label=".form-select-sm">
+              <option value="" selected>Chọn tỉnh thành</option>
+            </select>
+          </div>
+          <div class="district">
+            <p>Quận, huyện:</p>
+            <select class="diachi" id="district" aria-label=".form-select-sm">
+              <option value="" selected>Chọn quận huyện</option>
+            </select>
+          </div>
+          <div class="ward">
+            <p>Phường, xã:</p>
+            <select class="diachi" id="ward" aria-label=".form-select-sm">
+              <option value="" selected>Chọn phường xã</option>
+            </select>
+          </div>
+          <div class="diachichitiet">
+            <p>Nhập địa chỉ cụ thể:</p>
+            <input type="text" class="diachi" placeholder="Địa chỉ: " />
+          </div>
+        </div>
+        <div class="nganhang">
+          <p>Chọn ngân hàng:</p>
+          <select class="diachi" name="nganhangs">
+            <option value="value">Chọn ngân hàng</option>
+            <option value="value">Vietcombank</option>
+            <option value="value">BIDV</option>
+            <option value="value">VP Bank</option>
+            <option value="value">Viettel Money</option>
+            <option value="value">MB Bank</option>
+          </select>
+          <div class="sotaikhoan">
+            <p>Nhập số tài khoản:</p>
+            <input type="tel" class="diachi" placeholder="Số tài khoản: " />
+          </div>
+          <div class="tentaikhoan">
+            <p>Nhập tên người nhận:</p>
+            <input type="text" class="diachi" placeholder="Tên người nhận: " />
+          </div>
+          <p>Hoặc:</p>
+          <div class="taikhoan">
+            <div class="taikhoans">
+              <input type="radio" />
+              <label for="vnpay">Thanh toán bằng VNPAY</label>
+            </div>
+            <div class="taikhoans">
+              <input type="radio" />
+              <label for="qrcode">Thanh toán bằng QR CODE</label>
+            </div>
+            <div class="taikhoans">
+              <input type="radio" />
+              <label for="momo">Thanh toán bằng MOMO</label>
+            </div>
+            <button class="submit">Xác Nhận Giao Dịch</button>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+      <script>
+        var citis = document.getElementById("city");
+        var districts = document.getElementById("district");
+        var wards = document.getElementById("ward");
+        var Parameter = {
+          url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+          method: "GET",
+          responseType: "application/json",
+        };
+        var promise = axios(Parameter);
+        promise.then(function (result) {
+          renderCity(result.data);
+        });
+
+        function renderCity(data) {
+          for (const x of data) {
+            citis.options[citis.options.length] = new Option(x.Name, x.Id);
+          }
+          citis.onchange = function () {
+            district.length = 1;
+            ward.length = 1;
+            if (this.value != "") {
+              const result = data.filter((n) => n.Id === this.value);
+
+              for (const k of result[0].Districts) {
+                district.options[district.options.length] = new Option(
+                  k.Name,
+                  k.Id
+                );
+              }
+            }
+          };
+          district.onchange = function () {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Id === citis.value);
+            if (this.value != "") {
+              const dataWards = dataCity[0].Districts.filter(
+                (n) => n.Id === this.value
+              )[0].Wards;
+
+              for (const w of dataWards) {
+                wards.options[wards.options.length] = new Option(w.Name, w.Id);
+              }
+            }
+          };
+        }
+      </script>
+      <footer>
+        <div class="containers">
+          <div class="footer-content">
+            <h3>Liên hệ tôi</h3>
+            <p>Email:Info@example.com</p>
+            <p>Phone:0123.456.789</p>
+            <p>Địa chỉ:123 Street</p>
+          </div>
+          <div class="footer-content">
+            <h3>Liên kết nhanh</h3>
+            <ul class="list">
+              <li><a href="">Trang Chủ</a></li>
+              <li><a href="">Thông Tin</a></li>
+              <li><a href="">Liên Hệ</a></li>
+              <li><a href="">Quảng Cáo</a></li>
+              <li><a href="">Thanh Toán</a></li>
+            </ul>
+          </div>
+          <div class="footer-content">
+            <h3>Theo dõi tôi</h3>
+            <ul class="social-icons">
+              <li>
+                <a href=""><i class="fab fa-facebook"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fab fa-instagram"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fab fa-linkedin"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="bottom-bar">
+          <p>&copy; HopMini1310</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

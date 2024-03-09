@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 980px;
+  margin: 0 auto;
+}
+.header {
+  width: 980px;
+  height: 100px;
+  background-color: whitesmoke;
+}
+.logo {
+  padding-top: 15px;
+  padding-left: 40px;
+  float: left;
+}
+.hotline {
+  padding-top: 25px;
+  padding-right: 50px;
+  float: right;
+}
+nav {
+  width: 980px;
+  height: 35px;
+  background: #272f54;
+}
+nav ul {
+  list-style: none;
+}
+nav ul li {
+  line-height: 35px;
+  float: left;
+}
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  margin-left: 25px;
+  transition: 0.5s;
+}
+nav ul li a:hover {
+  color: yellow;
+  border-bottom: 2px solid yellow;
+}
+.search {
+  float: right;
+  line-height: 35px;
+  margin-right: 20px;
+}
+.search input {
+  padding: 2px;
+  width: 200px;
+  border: 0.5px solid cyan;
+  border-radius: 2px;
+}
+.search button {
+  padding: 2px;
+  width: 100px;
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  transition: 0.5s;
+}
+.search button:hover {
+  color: black;
+  background: rgb(255, 184, 184);
+  border: solid rgb(255, 184, 184);
+  cursor: pointer;
+}
+.slide img {
+  padding-top: 10px;
+  width: 980px;
+}
+.sanpham {
+  width: 980px;
+}
+.main {
+  width: 500px;
+  height: 370px;
+  margin: 0 auto;
+  border-radius: 40px;
+  background: white;
+}
+.head p {
+  padding: 20px;
+  text-align: center;
+  font-size: 25px;
+  font-family: monospace;
+  font-weight: 600;
+  color: rgb(21, 8, 8);
+}
+
+.class {
+  margin: 0 auto;
+}
+
+.class p {
+  margin: 0 autopx;
+  font-size: 15px;
+  font-family: monospace;
+}
+
+.class input[type="text"],
+input[type="password"] {
+  background: none;
+  outline: none;
+  padding: 0 5px;
+  border: solid black;
+  width: 250px;
+  height: 30px;
+  margin: 5px auto;
+  transition: 0.5s;
+}
+
+.class input[type="text"]:focus,
+input[type="password"]:focus {
+  color: black;
+  width: 250px;
+}
+
+.class button {
+  background: rgb(255, 0, 0);
+  width: 250px;
+  height: 30px;
+  margin: 0 auto;
+  color: white;
+  padding: 5px;
+}
+.class button a {
+  text-decoration: none;
+  color: white;
+}
+
+.class button :hover {
+  color: black;
+  cursor: pointer;
+}
+footer {
+  background: #b9b9b9;
+  padding-top: 50px;
+}
+.containers {
+  width: 980px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.footer-content {
+  width: 33.3%;
+}
+.footer-content h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.footer-content p {
+  width: 190px;
+  margin: auto;
+  padding: 7px;
+}
+.footer-content ul {
+  text-align: center;
+}
+.list {
+  padding: 0;
+}
+.list li {
+  width: auto;
+  text-align: center;
+  list-style-type: none;
+  padding: 7px;
+  position: relative;
+}
+.list li::before {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 2px;
+  background: #f18930;
+  transition-duration: 0.5s;
+}
+.list li:hover::before {
+  width: 70px;
+}
+.social-icons {
+  text-align: center;
+  padding: 0;
+}
+.social-icons li {
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+}
+.social-icons i {
+  color: white;
+  font-size: 25px;
+}
+.footer-content a {
+  text-decoration: none;
+}
+.footer-content a:hover {
+  color: #f18930;
+}
+.social-icons i:hover {
+  color: #f18930;
+}
+.bottom-bar {
+  background: #f18930;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 50px;
+}
+.bottom-bar p {
+  color: #343434;
+  margin: 0;
+  font-size: 16px;
+  padding: 7px;
+}
